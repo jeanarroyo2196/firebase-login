@@ -1,4 +1,4 @@
-export const Login = () => {
+export const Form = () => {
   return (
     <main className="w-full flex h-screen">
       <div className="relative flex-1 hidden lg:flex">
