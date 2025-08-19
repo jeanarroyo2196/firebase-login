@@ -1,4 +1,29 @@
+import { useState } from "react";
+import firebaseApp from "../config/firebaseConfig.ts";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+const auth = getAuth(firebaseApp);
+
 export const Form = () => {
+  const [register, setRegister] = useState(false);
+
+  const authentication = async (e: any) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    if (register) {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } else {
+      await signInWithEmailAndPassword(auth, email, password);
+    }
+  };
+
   return (
     <main className="w-full flex h-screen">
       <div className="relative flex-1 hidden lg:flex">
@@ -7,11 +32,14 @@ export const Form = () => {
       <div className="flex-1 flex items-center justify-center bg-gray-900 p-3">
         <div className="w-full max-w-2xl p-10 rounded-lg shadow border bg-gray-800 border-gray-700">
           <h1 className="text-3xl font-bold text-white mb-6">
-            Sign in to your account
+            {register ? "Create an account" : "Sign in to your account"}
           </h1>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={authentication}>
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">
+              <label
+                htmlFor="email"
+                className="block mb-2 text-sm font-medium text-white"
+              >
                 Email
               </label>
               <input
@@ -22,7 +50,10 @@ export const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">
+              <label
+                htmlFor="password"
+                className="block mb-2 text-sm font-medium text-white"
+              >
                 Password
               </label>
               <input
@@ -32,13 +63,19 @@ export const Form = () => {
                 className="w-full mt-2 p-3 bg-gray-700 text-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
-            <button className="w-full mt-2 px-5 py-2.5 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer">
-              Sign in
+            <button
+              type="submit"
+              className="w-full mt-2 px-5 py-2.5 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer"
+            >
+              {register ? "Create account" : "Sign in"}
             </button>
             <p className="text-center text-white">
-              Don't have an account?{" "}
-              <a className="font-medium text-indigo-600 hover:text-idnigo-500 cursor-pointer">
-                Sign up
+              {register ? "Already have an account?" : "Don't have an account?"}{" "}
+              <a
+                className="font-medium text-indigo-600 hover:text-idnigo-500 cursor-pointer"
+                onClick={() => setRegister(!register)}
+              >
+                {register ? "Log in" : "Sign up"}
               </a>
             </p>
           </form>
