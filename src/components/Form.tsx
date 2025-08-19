@@ -35,7 +35,12 @@ export const Form = () => {
             <button className="w-full mt-2 px-5 py-2.5 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 cursor-pointer">
               Sign in
             </button>
-            <p className="text-center text-white">Don't have an account? <a className="font-medium text-indigo-600 hover:text-idnigo-500 cursor-pointer">Sign up</a></p>
+            <p className="text-center text-white">
+              Don't have an account?{" "}
+              <a className="font-medium text-indigo-600 hover:text-idnigo-500 cursor-pointer">
+                Sign up
+              </a>
+            </p>
           </form>
         </div>
       </div>
