@@ -11,7 +11,7 @@ export const Form = () => {
           </h1>
           <form className="space-y-6">
             <div>
-              <label className="block mb-2 text-sm font-medium text-white">
+              <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">
                 Email
               </label>
               <input
@@ -22,7 +22,7 @@ export const Form = () => {
               />
             </div>
             <div>
-              <label className="block mb-2 text-sm font-medium text-white">
+              <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">
                 Password
               </label>
               <input
