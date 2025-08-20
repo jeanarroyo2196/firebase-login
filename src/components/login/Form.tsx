@@ -1,5 +1,5 @@
 import { useState } from "react";
-import firebaseApp from "../config/firebaseConfig.ts";
+import firebaseApp from "../../config/firebaseConfig.ts";
 import {
   getAuth,
   createUserWithEmailAndPassword,
