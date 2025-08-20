@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Form } from "./components/Form";
-import { Home } from "./components/Home";
+import { Home } from "./components/home/Home.tsx";
 import firebaseApp from "./config/firebaseConfig.ts";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";

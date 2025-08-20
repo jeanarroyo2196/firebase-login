@@ -1,4 +1,4 @@
-import { Navbar } from "./Navbar";
+import { Navbar } from "../shared/navbar/Navbar";
 
 export const Home = () => {
   return (

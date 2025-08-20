@@ -7,12 +7,12 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { CloseButton } from "../assets/icons/CloseButton";
-import { CodeLogo } from "../assets/icons/CodeLogo";
-import { ListButton } from "../assets/icons/ListButton";
-import { NotificationsButton } from "../assets/icons/NotificationsButton";
-import { ProfileIcon } from "../assets/icons/ProfileIcon";
-import firebaseApp from "../config/firebaseConfig.ts";
+import { CloseButton } from "../../../assets/icons/CloseButton.tsx";
+import { CodeLogo } from "../../../assets/icons/CodeLogo.tsx";
+import { ListButton } from "../../../assets/icons/ListButton.tsx";
+import { NotificationsButton } from "../../../assets/icons/NotificationsButton.tsx";
+import { ProfileIcon } from "../../../assets/icons/ProfileIcon.tsx";
+import firebaseApp from "../../../config/firebaseConfig.ts";
 import { getAuth, signOut } from "firebase/auth";
 
 const navigation = [
