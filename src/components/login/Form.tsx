@@ -5,11 +5,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { Alert } from "../shared/alert/Alert.tsx";
 
 const auth = getAuth(firebaseApp);
 
 export const Form = () => {
   const [register, setRegister] = useState(false);
+  const [message, setMessage] = useState("");
 
   const authentication = async (e: any) => {
     e.preventDefault();
@@ -20,7 +22,11 @@ export const Form = () => {
     if (register) {
       await createUserWithEmailAndPassword(auth, email, password);
     } else {
-      await signInWithEmailAndPassword(auth, email, password);
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (error: any) {
+        setMessage("There is no account associated with this email address");
+      }
     }
   };
 
@@ -29,7 +35,15 @@ export const Form = () => {
       <div className="relative flex-1 hidden lg:flex">
         <div className="absolute inset-0 bg-[url('src/assets/images/wave.svg')] bg-cover bg-no-repeat"></div>
       </div>
-      <div className="flex-1 flex items-center justify-center bg-gray-900 p-3">
+      <div className="flex-1 flex flex-col items-center justify-center bg-gray-900 p-3">
+        <div className="w-full max-w-2xl mb-12">
+          <Alert
+            message={message}
+            register={register}
+            setRegister={setRegister}
+            setMessage={setMessage}
+          />
+        </div>
         <div className="w-full max-w-2xl p-10 rounded-lg shadow border bg-gray-800 border-gray-700">
           <h1 className="text-3xl font-bold text-white mb-6">
             {register ? "Create an account" : "Sign in to your account"}
