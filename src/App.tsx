@@ -1,9 +1,27 @@
 import "./App.css";
+import { useState } from "react";
+import { Form } from "./components/login/Form.tsx";
+import { Home } from "./components/home/Home.tsx";
+import firebaseApp from "./config/firebaseConfig.ts";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import type { User } from "firebase/auth";
+
+const auth = getAuth(firebaseApp);
 
 function App() {
+  const [user, setUser] = useState<User | null>(null);
+
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setUser(currentUser);
+    } else {
+      setUser(null);
+    }
+  });
+
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      { user ? <Home /> : <Form />}
     </div>
   );
 }
