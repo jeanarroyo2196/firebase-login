@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { Alert } from "../shared/alert/Alert.tsx";
+import loginImage from "../../assets/images/wave.svg";
 
 const auth = getAuth(firebaseApp);
 
@@ -41,9 +42,7 @@ export const Form = () => {
       } catch (error: any) {
         switch (error.code) {
           case "auth/invalid-credential":
-            setMessage(
-              "Invalid email or password. Please try again or"
-            );
+            setMessage("Invalid email or password. Please try again or");
             break;
         }
       }
@@ -53,7 +52,13 @@ export const Form = () => {
   return (
     <main className="w-full flex h-screen">
       <div className="relative flex-1 hidden lg:flex">
-        <div className="absolute inset-0 bg-[url('src/assets/images/wave.svg')] bg-cover bg-no-repeat"></div>
+        <div className="">
+          <img
+            src={loginImage}
+            className="w-full h-full object-cover"
+            alt="Login Background"
+          />
+        </div>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center bg-gray-900 p-3">
         <div className="w-full max-w-2xl mb-12">
