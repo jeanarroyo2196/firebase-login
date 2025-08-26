@@ -20,12 +20,32 @@ export const Form = () => {
     const password = e.target.password.value;
 
     if (register) {
-      await createUserWithEmailAndPassword(auth, email, password);
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } catch (error: any) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            setMessage("The email address you entered is already in use");
+            break;
+          case "auth/weak-password":
+            setMessage("The password must be at least 6 characters long");
+            break;
+          case "auth/invalid-email":
+            setMessage("The email address is not valid");
+            break;
+        }
+      }
     } else {
       try {
         await signInWithEmailAndPassword(auth, email, password);
       } catch (error: any) {
-        setMessage("There is no account associated with this email address");
+        switch (error.code) {
+          case "auth/invalid-credential":
+            setMessage(
+              "Invalid email or password. Please try again or"
+            );
+            break;
+        }
       }
     }
   };

@@ -7,7 +7,12 @@ interface AlertProps {
   setMessage: (value: string) => void;
 }
 
-export const Alert = ({ message, register, setRegister, setMessage }: AlertProps) => {
+export const Alert = ({
+  message,
+  register,
+  setRegister,
+  setMessage,
+}: AlertProps) => {
   if (!message) return null;
 
   return (
@@ -19,16 +24,18 @@ export const Alert = ({ message, register, setRegister, setMessage }: AlertProps
           </div>
           <p className="text-red-600 sm:text-sm">
             {message}{" "}
-            <a
+            {!register && (
+              <a
                 className="underline font-medium hover:text-red-700 cursor-pointer"
                 onClick={() => {
-                    setRegister(!register);
-                    setMessage("");
+                  setRegister(true);
+                  setMessage("");
                 }}
-            >
+              >
                 Sign up?
-            </a>
-            </p>
+              </a>
+            )}
+          </p>
         </div>
       </div>
     </div>
